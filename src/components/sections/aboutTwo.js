@@ -6,10 +6,12 @@ import { StartSteps, TitleText, TypingText } from '../context/othersComponents';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeIn, planetVariants } from '../../../utils/motion';
 import { ArrowDown } from '../Icons';
+import useThemeSwitcher from './../../components/hooks/useThemeSwitcher';
 
 function TextReveal() {
   const [lettersRef, setlettersRef] = useArrayRef();
   const triggerRef = useRef(null);
+  const [mode, setMode] = useThemeSwitcher(); // Use the custom hook
 
   function useArrayRef() {
     const lettersRef = useRef([]);
@@ -20,10 +22,7 @@ function TextReveal() {
   gsap.registerPlugin(ScrollTrigger);
   const text = "Experience the joy of learning, boost confidence, and achieve academic success with our expert tutors. Let's explore their bright future together!";
 
-  useEffect(() => {
-    const isDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const textColor = isDarkMode ? "#FFFFFF" : "#2A2A2A";
-
+  const animateText = (textColor) => {
     const anim = gsap.to(
       lettersRef.current,
       {
@@ -33,15 +32,22 @@ function TextReveal() {
           start: "top center",
           end: "bottom 85%",
         },
-        color: textColor, // The color will be set to white in dark mode and 2A2A2A in light mode.
+        color: textColor,
         duration: 5,
         stagger: 1,
       }
     );
+    return anim;
+  };
+
+  useEffect(() => {
+    let anim = animateText(mode === "dark" ? "#FFFFFF" : "#2A2A2A");
+
     return (() => {
       anim.kill();
     });
-  }, []);
+  }, [mode]);
+
 
   return (
     <>

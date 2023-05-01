@@ -28,7 +28,7 @@ const HireMe = () => {
           href={`tel:${isPhone ? phoneNumber : ''}`}
           ref={linkRef}
           onClick={handleClick}
-          className='flex items-center justify-center
+          className='flex items-center justify-center md:z-50
           absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark
           text-light shadow-md border border-solid border-dark w-20 h-20 rounded-full
           font-semibold hover:bg-light hover:text-dark
