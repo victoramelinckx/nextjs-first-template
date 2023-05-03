@@ -7,6 +7,7 @@ import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
+import coreImage from "../../public/iqzoneCom.png";
 import profilePic from "../../public/images/profile/developer-pic-2.jpg";
 import TransitionEffect from "@/components/TransitionEffect";
 import Footer from "@/components/Footer";
@@ -91,7 +92,7 @@ const about = () => {
             >
               <div className="absolute top-0 -right-3 -z-10 w-[102%] h-[103%] rounded-[2rem] bg-dark dark:bg-light" />
               <Image
-                src={profilePic}
+                src={coreImage}
                 alt="Codebucks"
                 className="w-full h-auto rounded-2xl"
                 priority
